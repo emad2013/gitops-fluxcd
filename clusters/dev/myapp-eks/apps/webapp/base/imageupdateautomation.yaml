@@ -1,0 +1,27 @@
+# Tells Flux to commit image updates back to git automatically
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: webapp
+  namespace: flux-system
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        name: flux-bot
+        email: flux@emad2013.com
+      messageTemplate: |
+        chore: auto-update webapp image to {{range .Updated.Images}}{{.}}{{end}}
+    push:
+      branch: main
+  update:
+    strategy: Setters
+    path: ./clusters/dev/myapp-eks/apps/webapp/base

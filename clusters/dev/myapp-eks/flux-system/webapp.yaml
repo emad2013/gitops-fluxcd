@@ -1,0 +1,25 @@
+# Place this file at:
+# clusters/dev/myapp-eks/flux-system/webapp.yaml
+# Then add "- webapp.yaml" to flux-system/kustomization.yaml resources
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: webapp
+  namespace: flux-system
+spec:
+  interval: 5m
+  path: ./clusters/dev/myapp-eks/apps/webapp/base
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  # ── Health checks — Flux waits for these before marking success
+  # If deployment never becomes healthy within timeout,
+  # Flux marks the kustomization as failed and stops applying
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: webapp
+      namespace: webapp
+  timeout: 3m
+  retryInterval: 1m
