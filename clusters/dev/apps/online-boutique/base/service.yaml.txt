@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: online-boutique
+  namespace: online-boutique
+  labels:
+    app: online-boutique
+spec:
+  selector:
+    app: online-boutique
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+
+
+
+
+
+
+
+
+
+

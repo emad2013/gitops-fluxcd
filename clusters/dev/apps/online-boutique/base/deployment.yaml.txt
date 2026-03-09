@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: online-boutique
+  namespace: online-boutique
+  labels:
+    app: online-boutique
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: online-boutique
+  template:
+    metadata:
+      labels:
+        app: online-boutique
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
