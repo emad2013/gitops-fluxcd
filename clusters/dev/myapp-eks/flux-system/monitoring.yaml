@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./infrastructure/controllers/monitoring
+  path: ./clusters/dev/myapp-eks/infrastructure/controllers/monitoring
   prune: true
   sourceRef:
     kind: GitRepository
