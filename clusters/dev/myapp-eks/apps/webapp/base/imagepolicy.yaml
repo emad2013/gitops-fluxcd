@@ -1,0 +1,15 @@
+# Defines WHICH tags to auto-upgrade to
+# semver range 1.25.x means: auto-upgrade patch versions only
+# e.g. 1.25.3 → 1.25.4 → 1.25.5 (automatic)
+# but NOT 1.25.x → 1.26.x (minor) or 2.x (major)
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: webapp
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: webapp
+  policy:
+    semver:
+      range: "1.25.x"   # ← only auto-upgrade patch versions

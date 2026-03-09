@@ -1,0 +1,10 @@
+# Tells Flux to scan Docker Hub for new nginx image tags
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: webapp
+  namespace: flux-system
+spec:
+  image: nginx
+  # Scan for new tags every 5 minutes
+  interval: 5m
