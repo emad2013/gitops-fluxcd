@@ -4,7 +4,7 @@ metadata:
   name: webapp-dev
 namespace: webapp
 bases:
-  - ../../base          # ← points to apps/webapp/base/
+  - ../base          # ← points to apps/webapp/base/
 patches:
   - path: patch-deployment.yaml
     target:
