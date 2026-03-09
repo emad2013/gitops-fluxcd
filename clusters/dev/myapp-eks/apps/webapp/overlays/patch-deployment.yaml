@@ -2,6 +2,5 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp
-  namespace: webapp
-specs:
-  replicas: 1          # dev only needs 1 replica
+spec:
+  replicas: 1
