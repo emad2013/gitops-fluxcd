@@ -1,10 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 namespace: online-boutique
-
 # Point to the base directory
-bases:
+resources:
   - ../../base/   # ← relative path to base kustomization.yaml
 
 # Apply the patch on top of base
