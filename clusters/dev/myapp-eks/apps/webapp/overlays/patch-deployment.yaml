@@ -3,5 +3,5 @@ kind: Deployment
 metadata:
   name: webapp
   namespace: webapp
-spec:
+specs:
   replicas: 1          # dev only needs 1 replica
