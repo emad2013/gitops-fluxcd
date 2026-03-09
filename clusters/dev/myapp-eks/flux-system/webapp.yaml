@@ -8,7 +8,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: ./clusters/dev/myapp-eks/apps/webapp/overlays
+  path: ./apps/webapp/overlays
   prune: true
   sourceRef:
     kind: GitRepository
