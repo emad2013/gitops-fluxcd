@@ -12,6 +12,8 @@ spec:
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: myapp-eks
+  amiSelectorTerms:
+    - id: ami-00bc17203552ec3f8 
   tags:
     karpenter.sh/discovery: myapp-eks
 ---
