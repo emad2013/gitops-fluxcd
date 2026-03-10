@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.aws/v1alpha1
+kind: ClusterNetworkPolicy
+metadata:
+  name: baseline-default-deny-ingress
+spec:
+  tier: Baseline
+  priority: 100
+  subject:
+    namespaces:
+      matchLabels:
+        security.example.com/cluster-default-deny: "true"
+  ingress:
+    - name: deny-all-cross-namespace-ingress
+      action: Deny
+      from:
+        - namespaces:
+            matchLabels: {}

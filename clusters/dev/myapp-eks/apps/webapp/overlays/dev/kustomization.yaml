@@ -9,3 +9,7 @@ patches:
     target:
       kind: Deployment
       name: webapp
+  - path: patch-security-webapp.yaml
+    target:
+      kind: Deployment
+      name: webapp

@@ -6,3 +6,5 @@ resources:
 - monitoring.yaml
 - webapp.yaml
 - logging.yaml
+- pod-security.yaml
+- cluster-network-policies
