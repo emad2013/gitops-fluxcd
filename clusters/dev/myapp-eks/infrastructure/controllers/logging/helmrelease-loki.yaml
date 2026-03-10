@@ -9,6 +9,7 @@ spec:
   chart:
     spec:
       chart: loki
+      version: "6.53.0"
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -16,6 +17,12 @@ spec:
       interval: 1h
   values:
     deploymentMode: SingleBinary
+
+    test:
+      enabled: false
+
+    lokiCanary:
+      enabled: false
 
     loki:
       auth_enabled: false
@@ -42,6 +49,9 @@ spec:
         size: 20Gi
 
     lokiCanary:
+      enabled: false
+
+    minio:
       enabled: false
 
     backend:
