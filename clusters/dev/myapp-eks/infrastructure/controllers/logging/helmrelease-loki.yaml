@@ -45,7 +45,7 @@ spec:
     singleBinary:
       replicas: 1
       persistence:
-        enabled: true
+        enabled: false
         size: 2Gi
 
     minio:
