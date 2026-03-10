@@ -3,13 +3,18 @@ kind: Kustomization
 metadata:
   name: webapp-dev
 resources:
-  - ../../base          # ← changed from bases to resources
+  - ../../base 
+  - hpa-webapp.yaml        # ← changed from bases to resources
 patches:
   - path: patch-deployment.yaml
     target:
       kind: Deployment
       name: webapp
   - path: patch-security-webapp.yaml
+    target:
+      kind: Deployment
+      name: webapp
+  - path: patch-webapp-resources.yaml
     target:
       kind: Deployment
       name: webapp
