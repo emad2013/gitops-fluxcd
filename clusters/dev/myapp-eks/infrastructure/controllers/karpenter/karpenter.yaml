@@ -1,0 +1,47 @@
+apiVersion: karpenter.k8s.aws/v1
+kind: EC2NodeClass
+metadata:
+  name: default
+spec:
+  amiSelectorTerms:
+    - alias: al2@latest        # Amazon Linux 2 latest
+  role: "KarpenterNodeRole-myapp-eks"   # ← role created by eks_blueprints_addons
+  subnetSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: myapp-eks   # ← matches your cluster name
+  securityGroupSelectorTerms:
+    - tags:
+        karpenter.sh/discovery: myapp-eks
+  tags:
+    karpenter.sh/discovery: myapp-eks
+---
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: default
+spec:
+  template:
+    spec:
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: default
+      requirements:
+        - key: kubernetes.io/arch
+          operator: In
+          values: ["amd64"]
+        - key: kubernetes.io/os
+          operator: In
+          values: ["linux"]
+        - key: karpenter.sh/capacity-type
+          operator: In
+          values: ["on-demand"]
+        - key: node.kubernetes.io/instance-type
+          operator: In
+          values: ["t3.medium"]
+  limits:
+    cpu: "8"              # max 10 CPUs across all karpenter nodes
+    memory: "8Gi"
+  disruption:
+    consolidationPolicy: WhenEmptyOrUnderutilized
+    consolidateAfter: 30s  # remove empty nodes after 30s

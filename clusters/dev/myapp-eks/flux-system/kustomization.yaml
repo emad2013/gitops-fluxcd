@@ -5,3 +5,4 @@ resources:
 - gotk-sync.yaml
 - monitoring.yaml
 - webapp.yaml
+- karpenter.yaml
