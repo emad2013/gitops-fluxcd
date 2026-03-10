@@ -8,3 +8,9 @@ resources:
 - logging.yaml
 - pod-security.yaml
 - cluster-network-policies.yaml
+
+patches:
+  - path: patch-namespace-psa.yaml
+    target:
+      kind: Namespace
+      name: flux-system

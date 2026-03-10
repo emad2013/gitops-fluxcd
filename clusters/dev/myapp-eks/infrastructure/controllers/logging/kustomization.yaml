@@ -6,3 +6,8 @@ resources:
   - helmrelease-loki.yaml
   - helmrelease-alloy.yaml
   - helmrelease-grafana.yaml
+patches:
+  - path: patch-namespace-psa.yaml
+    target:
+      kind: Namespace
+      name: logging

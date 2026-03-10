@@ -7,3 +7,8 @@ resources:
   - namespace.yaml
   - helmrepository.yaml
   - helmrelease.yaml
+patches:
+  - path: patch-namespace-psa.yaml
+    target:
+      kind: Namespace
+      name: monitoring
