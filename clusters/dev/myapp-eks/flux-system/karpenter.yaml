@@ -6,6 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
+  timeout: 5m
   path: ./clusters/dev/myapp-eks/infrastructure/controllers/karpenter
   prune: true
   sourceRef:
