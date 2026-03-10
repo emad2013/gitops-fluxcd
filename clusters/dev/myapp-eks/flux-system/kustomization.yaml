@@ -3,6 +3,9 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+<<<<<<< HEAD
 - monitoring.yaml
 - webapp.yaml
 - karpenter.yaml
+=======
+>>>>>>> 7dd95d013f32b4a0e03e3f87c99414bb53eb5a9e
