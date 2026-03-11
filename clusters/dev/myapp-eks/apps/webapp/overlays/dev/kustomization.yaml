@@ -20,5 +20,5 @@ patches:
       name: webapp
   - path: patch-namespace-psa.yaml
     target:
-      kind: namespace
+      kind: Namespace
       name: webapp
