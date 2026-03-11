@@ -4,7 +4,8 @@ metadata:
   name: webapp-dev
 resources:
   - ../../base 
-  - hpa-webapp.yaml        # ← changed from bases to resources
+  - hpa-webapp.yaml
+  - pdb-webapp.yaml       # ← changed from bases to resources
 patches:
   - path: patch-deployment.yaml
     target:
