@@ -38,25 +38,12 @@ spec:
           limits:
             cpu: "500m"
             memory: "1Gi"
-        storageSpec:
-          volumeClaimTemplate:
-            spec:
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 10Gi   # ← persistent storage for metrics
+      
 
     # ── Alertmanager ────────────────────────────────────────────
     alertmanager:
       enabled: true
-      alertmanagerSpec:
-        storage:
-          volumeClaimTemplate:
-            spec:
-              accessModes: ["ReadWriteOnce"]
-              resources:
-                requests:
-                  storage: 2Gi
+     
 
     # ── Node Exporter ───────────────────────────────────────────
     nodeExporter:
