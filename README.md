@@ -1,8 +1,8 @@
 # gitops-fluxcd
 
-> **Author:** Emad Ahmed  
-> **Cluster:** myapp-eks (eu-west-1)  
-> **Environments:** dev, staging  
+Author:** Emad Ahmed  
+Cluster:** myapp-eks (eu-west-1)  
+Environments:** dev, staging  
 
 This is the GitOps repository for managing everything that runs inside the EKS cluster — applications, infrastructure controllers, monitoring, logging, and security policies. Flux watches this repo and keeps the cluster in sync with whatever is committed here. Push a change, Flux applies it. That's the whole workflow.
 
@@ -12,11 +12,11 @@ The EKS cluster itself is provisioned by Terraform in [eks-automation-iac](https
 
 ## Architecture
 
-```mermaid
+"
 graph TB
-    GIT["📂 GitHub — gitops-fluxcd<br/>Single Source of Truth"]
+    GIT["GitHub — gitops-fluxcd-->Single Source of Truth"]
 
-    subgraph FLUX["🔄 Flux Controllers (flux-system namespace)"]
+    subgraph FLUX[" Flux Controllers (flux-system namespace)"]
         SRC["source-controller"]
         KUST["kustomize-controller"]
         HELM["helm-controller"]
@@ -24,20 +24,20 @@ graph TB
         IMGA["image-automation-controller"]
     end
 
-    subgraph CLUSTER["⚙️ EKS Cluster — myapp-eks"]
-        subgraph INFRA["🏗️ Infrastructure Layer"]
+    subgraph CLUSTER[" EKS Cluster — myapp-eks"]
+        subgraph INFRA["Infrastructure Layer"]
             direction LR
             NETPOL["Network Policies<br/>configs/cluster-network-policies"]
             MONCTRL["Monitoring Controller<br/>kube-prometheus-stack"]
             LOGCTRL["Logging Controller<br/>log aggregation"]
         end
 
-        subgraph APPS["📦 Application Layer"]
+        subgraph APPS[" Application Layer"]
             WEBAPP["webapp Deployment<br/>+ HPA (CPU-based)<br/>+ PDB (min 1 available)"]
             SVC["Service"]
         end
 
-        subgraph SEC["🔒 Security"]
+        subgraph SEC[" Security"]
             PSA["Pod Security Admission<br/>patch-namespace-psa<br/>enforce: baseline"]
             CLNETPOL["Cluster Network Policies<br/>default-deny + allow rules"]
         end
@@ -52,19 +52,10 @@ graph TB
     KUST --> SEC
     HELM --> INFRA
 
-    style GIT fill:#24292e,color:#fff
-    style FLUX fill:#3F51B5,color:#fff
-    style CLUSTER fill:#FF9900,color:#000
-    style INFRA fill:#1A4B8E,color:#fff
-    style APPS fill:#4CAF50,color:#fff
-    style SEC fill:#D32F2F,color:#fff
-```
-
 ---
 
 ## How Everything Connects
 
-```mermaid
 sequenceDiagram
     participant Dev as Emad (Developer)
     participant Git as GitHub Repo
@@ -87,7 +78,6 @@ sequenceDiagram
     Flux->>Git: Auto-commit new image tag
     Git-->>Flux: New commit detected
     Flux->>K8s: Deploy updated image
-```
 
 ---
 
