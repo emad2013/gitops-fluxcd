@@ -50,6 +50,7 @@ spec:
       persistence:
         enabled: true
         size: 2Gi
+        storageClass: "gp2"
 
     minio:
       enabled: false
