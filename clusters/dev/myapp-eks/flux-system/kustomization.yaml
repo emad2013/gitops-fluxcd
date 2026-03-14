@@ -3,3 +3,17 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+<<<<<<< Updated upstream
+=======
+# monitoring.yaml
+# webapp.yaml
+# logging.yaml
+# cluster-network-policies.yaml
+# alb-grafana-ingress.yaml
+
+patches:
+  - path: patch-namespace-psa.yaml
+    target:
+      kind: Namespace
+      name: flux-system
+>>>>>>> Stashed changes
