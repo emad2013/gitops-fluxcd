@@ -4,6 +4,8 @@ metadata:
   name: cluster-network-policies
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: webapp
   interval: 10m
   path: ./infrastructure/configs/cluster-network-policies
   prune: true
