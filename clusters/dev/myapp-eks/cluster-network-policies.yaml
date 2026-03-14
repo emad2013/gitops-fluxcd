@@ -4,8 +4,6 @@ metadata:
   name: cluster-network-policies
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: webapp
   interval: 10m
   path: ./infrastructure/configs/cluster-network-policies
   prune: true
@@ -13,6 +11,6 @@ spec:
     kind: GitRepository
     name: flux-system
   dependsOn:
-    - name: namespaces
+    - name: webapp
   timeout: 5m
   
