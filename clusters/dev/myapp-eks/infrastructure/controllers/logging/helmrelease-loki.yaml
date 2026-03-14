@@ -39,15 +39,17 @@ spec:
               period: 24h
       storage:
         type: filesystem
+        filesystem:
+          chunks_directory: /var/loki/chunks
+          rules_directory: /var/loki/rules
       limits_config:
         retention_period: 168h
 
     singleBinary:
       replicas: 1
       persistence:
-        enabled: "true"
+        enabled: true
         size: 2Gi
-        
 
     minio:
       enabled: false
