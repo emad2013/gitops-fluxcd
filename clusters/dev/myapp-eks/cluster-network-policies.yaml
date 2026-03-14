@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./infrastructure/configs/cluster-network-policies
+  path: ./clusters/dev/myapp-eks/infrastructure/configs/cluster-network-policies
   prune: true
   sourceRef:
     kind: GitRepository

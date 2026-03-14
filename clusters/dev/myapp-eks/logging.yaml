@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./infrastructure/controllers/logging
+  path: ./clusters/dev/myapp-eks/infrastructure/controllers/logging
   prune: true
   sourceRef:
     kind: GitRepository

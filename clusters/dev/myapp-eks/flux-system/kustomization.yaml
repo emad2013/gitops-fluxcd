@@ -4,7 +4,6 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 <<<<<<< Updated upstream
-=======
 # monitoring.yaml
 # webapp.yaml
 # logging.yaml
