@@ -27,7 +27,7 @@ spec:
     serviceAccount:
       create: true
 
-    alloy:
+alloy:
   configMap:
     content: |-
       logging {
