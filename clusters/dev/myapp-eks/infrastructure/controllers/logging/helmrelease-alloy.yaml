@@ -27,63 +27,96 @@ spec:
     serviceAccount:
       create: true
 
-alloy:
-  configMap:
-    content: |-
-      logging {
-        level  = "info"
-        format = "logfmt"
-      }
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alloy
+  namespace: logging
+spec:
+  interval: 30m
+  releaseName: alloy
+  dependsOn:
+    - name: loki
+  chart:
+    spec:
+      chart: alloy
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+      interval: 1h
+  values:
+    controller:
+      type: deployment
+      replicas: 1
 
-      discovery.kubernetes "pods" {
-        role = "pod"
-      }
+    rbac:
+      create: true
 
-      discovery.relabel "pod_logs" {
-        targets = discovery.kubernetes.pods.targets
+    serviceAccount:
+      create: true
 
-        rule {
-          source_labels = ["__meta_kubernetes_namespace"]
-          action        = "replace"
-          target_label  = "namespace"
-        }
-
-        rule {
-          source_labels = ["__meta_kubernetes_pod_name"]
-          action        = "replace"
-          target_label  = "pod"
-        }
-
-        rule {
-          source_labels = ["__meta_kubernetes_pod_container_name"]
-          action        = "replace"
-          target_label  = "container"
-        }
-
-        rule {
-          source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
-          action        = "replace"
-          target_label  = "app"
-        }
-      }
-
-      loki.source.kubernetes "pods" {
-        targets    = discovery.relabel.pod_logs.output
-        forward_to = [loki.process.pod_logs.receiver]
-      }
-
-      loki.process "pod_logs" {
-        stage.static_labels {
-          values = {
-            cluster = "myapp-eks",
+    alloy:
+      configMap:
+        content: |-
+          logging {
+            level  = "info"
+            format = "logfmt"
           }
-        }
 
-        forward_to = [loki.write.default.receiver]
-      }
+          discovery.kubernetes "pods" {
+            role = "pod"
+          }
 
-      loki.write "default" {
-        endpoint {
-          url = "http://loki-gateway.logging.svc.cluster.local/loki/api/v1/push"
-        }
-      }
+          discovery.relabel "pod_logs" {
+            targets = discovery.kubernetes.pods.targets
+
+            rule {
+              source_labels = ["__meta_kubernetes_namespace"]
+              action        = "replace"
+              target_label  = "namespace"
+            }
+
+            rule {
+              source_labels = ["__meta_kubernetes_pod_name"]
+              action        = "replace"
+              target_label  = "pod"
+            }
+
+            rule {
+              source_labels = ["__meta_kubernetes_pod_container_name"]
+              action        = "replace"
+              target_label  = "container"
+            }
+
+            rule {
+              source_labels = ["__meta_kubernetes_pod_label_app_kubernetes_io_name"]
+              action        = "replace"
+              target_label  = "app"
+            }
+          }
+
+          loki.source.kubernetes "pods" {
+            targets    = discovery.relabel.pod_logs.output
+            forward_to = [loki.process.pod_logs.receiver]
+          }
+
+          loki.process "pod_logs" {
+            stage.static_labels {
+              values = {
+                cluster = "myapp-eks",
+              }
+            }
+
+            forward_to = [loki.write.default.receiver]
+          }
+
+          loki.write "default" {
+            endpoint {
+              url = "http://loki-gateway.logging.svc.cluster.local/loki/api/v1/push"
+            }
+          }
+
+   
+
+    
