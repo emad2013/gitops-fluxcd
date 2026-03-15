@@ -25,8 +25,10 @@ spec:
       port: 80
 
     persistence:
+      type: pvc
       enabled: true
-      size: 10Gi
+      storageClassName: gp2
+      size: 2Gi
 
     datasources:
       datasources.yaml:
@@ -35,6 +37,6 @@ spec:
           - name: Loki
             type: loki
             access: proxy
-            url: http://loki-gateway.logging.svc.cluster.local
+            url: http://loki-gateway.logging.svc.cluster.local:80
             isDefault: true
             editable: false
