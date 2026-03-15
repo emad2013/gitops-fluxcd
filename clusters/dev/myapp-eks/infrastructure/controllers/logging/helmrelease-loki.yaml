@@ -23,6 +23,12 @@ spec:
 
     lokiCanary:
       enabled: false
+      
+    chunksCache:
+      enabled: false
+
+    resultsCache:
+      enabled: false
 
     loki:
       auth_enabled: false
