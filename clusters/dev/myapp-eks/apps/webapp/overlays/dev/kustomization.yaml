@@ -11,15 +11,15 @@ patches:
     target:
       kind: Deployment
       name: webapp
-  - path: patch-security-webapp.yaml
-    target:
-      kind: Deployment
-      name: webapp
+  # - path: patch-security-webapp.yaml
+  #   target:
+  #     kind: Deployment
+  #     name: webapp
   - path: patch-webapp-resources.yaml
     target:
       kind: Deployment
       name: webapp
-  - path: patch-namespace-psa.yaml
-    target:
-      kind: Namespace
-      name: webapp
+  # - path: patch-namespace-psa.yaml
+  #   target:
+  #     kind: Namespace
+  #     name: webapp

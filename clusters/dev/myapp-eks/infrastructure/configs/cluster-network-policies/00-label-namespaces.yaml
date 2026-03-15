@@ -1,7 +1,7 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: webapp
-  labels:
-    security.example.com/cluster-default-deny: "true"
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: webapp
+#   labels:
+#     security.example.com/cluster-default-deny: "true"
 

@@ -1,42 +1,42 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: grafana
-  namespace: logging
-spec:
-  interval: 30m
-  releaseName: grafana
-  dependsOn:
-    - name: loki
-  chart:
-    spec:
-      chart: grafana
-      sourceRef:
-        kind: HelmRepository
-        name: grafana
-        namespace: flux-system
-      interval: 1h
-  values:
-    adminUser: admin
-    adminPassword: changeme123
+# apiVersion: helm.toolkit.fluxcd.io/v2
+# kind: HelmRelease
+# metadata:
+#   name: grafana
+#   namespace: logging
+# spec:
+#   interval: 30m
+#   releaseName: grafana
+#   dependsOn:
+#     - name: loki
+#   chart:
+#     spec:
+#       chart: grafana
+#       sourceRef:
+#         kind: HelmRepository
+#         name: grafana
+#         namespace: flux-system
+#       interval: 1h
+#   values:
+#     adminUser: admin
+#     adminPassword: changeme123
 
-    service:
-      type: ClusterIP
-      port: 80
+#     service:
+#       type: ClusterIP
+#       port: 80
 
-    persistence:
-      type: pvc
-      enabled: true
-      storageClassName: gp2
-      size: 2Gi
+#     persistence:
+#       type: pvc
+#       enabled: true
+#       storageClassName: gp2
+#       size: 2Gi
 
-    datasources:
-      datasources.yaml:
-        apiVersion: 1
-        datasources:
-          - name: Loki
-            type: loki
-            access: proxy
-            url: http://loki-gateway.logging.svc.cluster.local:80
-            isDefault: true
-            editable: false
+#     datasources:
+#       datasources.yaml:
+#         apiVersion: 1
+#         datasources:
+#           - name: Loki
+#             type: loki
+#             access: proxy
+#             url: http://loki-gateway.logging.svc.cluster.local:80
+#             isDefault: true
+#             editable: false
