@@ -4,5 +4,5 @@ resources:
 - monitoring.yaml
 - webapp.yaml
 - logging.yaml
-- cluster-network-policies.yaml
+#- cluster-network-policies.yaml
 - alb-grafana-ingress.yaml
