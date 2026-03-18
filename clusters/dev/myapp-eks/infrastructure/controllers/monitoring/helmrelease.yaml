@@ -1,43 +1,43 @@
-# apiVersion: helm.toolkit.fluxcd.io/v2
-# kind: HelmRelease
-# metadata:
-#   name: prometheus-stack
-#   namespace: monitoring
-# spec:
-#   interval: 1h
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus-stack
+  namespace: monitoring
+spec:
+  interval: 1h
 
 #   # ── Chart source ───────────────────────────────────────────────
-#   chart:
-#     spec:
-#       chart: kube-prometheus-stack
-#       version: ">=55.0.0"          # pin to a range or exact e.g. "55.5.0"
-#       sourceRef:
-#         kind: HelmRepository
-#         name: prometheus-community
-#         namespace: monitoring
-#       interval: 1h
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: ">=55.0.0"          # pin to a range or exact e.g. "55.5.0"
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: monitoring
+        interval: 1h
 
-#   # ── Helm values (equivalent to values.yaml) ───────────────────
-#   values:
+# ── Helm values (equivalent to values.yaml) ───────────────────
+  values:
 
-#     # ── Grafana ─────────────────────────────────────────────────
-#     grafana:
-#       enabled: true
-#       adminPassword: "changeme123"  # ← change this or use a Secret below
-#       service:
-#         type: ClusterIP             # ← change to LoadBalancer for public access
+    # ── Grafana ─────────────────────────────────────────────────
+    grafana:
+      enabled: true
+      adminPassword: "changeme123"  # ← change this or use a Secret below
+      service:
+        type: ClusterIP             # ← change to LoadBalancer for public access
 
 #     # ── Prometheus ──────────────────────────────────────────────
-#     prometheus:
-#       prometheusSpec:
-#         retention: 7d              # keep metrics for 7 days
-#         resources:
-#           requests:
-#             cpu: "200m"
-#             memory: "512Mi"
-#           limits:
-#             cpu: "500m"
-#             memory: "1Gi"
+    prometheus:
+      prometheusSpec:
+        retention: 7d              # keep metrics for 7 days
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
       
 
 #     # ── Alertmanager ────────────────────────────────────────────
@@ -46,9 +46,9 @@
      
 
 #     # ── Node Exporter ───────────────────────────────────────────
-#     nodeExporter:
-#       enabled: true               # metrics from every node
+    nodeExporter:
+      enabled: true               # metrics from every node
 
 #     # ── Kube State Metrics ──────────────────────────────────────
-#     kubeStateMetrics:
-#       enabled: true               # metrics about k8s objects
+     kubeStateMetrics:
+      enabled: true               # metrics about k8s objects
