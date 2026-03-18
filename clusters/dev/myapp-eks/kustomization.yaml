@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 # - monitoring.yaml
 - webapp.yaml
+- karpenter.yaml
 # - logging.yaml
 # - cluster-network-policies.yaml
 # - alb-grafana-ingress.yaml
