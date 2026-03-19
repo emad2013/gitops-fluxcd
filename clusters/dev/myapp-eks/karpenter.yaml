@@ -4,7 +4,7 @@ metadata:
   name: karpenter
   namespace: flux-system
 spec:
-  interval: 10m
+  interval: 1m
   path: ./clusters/dev/myapp-eks/infrastructure/configs/karpenter
   prune: true
   sourceRef:
