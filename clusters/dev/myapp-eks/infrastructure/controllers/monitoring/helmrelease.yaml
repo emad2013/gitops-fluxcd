@@ -34,3 +34,7 @@ spec:
       enabled: true
     kubeStateMetrics:
       enabled: true
+    metrics:                          # <-- added
+      enabled: true
+      serviceMonitor:
+        enabled: true
