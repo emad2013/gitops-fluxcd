@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: event-exporter
+  namespace: monitoring
+spec:
+  interval: 1h
+  url: oci://registry-1.docker.io/bitnamicharts/kubernetes-event-exporter
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    semver: ">=3.0.0 <4.0.0"
